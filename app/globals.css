@@ -1,0 +1,260 @@
+@import "tailwindcss";
+@import "xterm/css/xterm.css";
+
+:root {
+  --background: #05060d;
+  --foreground: #e6ecff;
+  --surface: #0b1020;
+  --muted: #9aa7d6;
+  --accent: #78d8ff;
+  --accent-strong: #5f87ff;
+  --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --font-terminal: var(--font-jetbrains);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-space);
+  --font-mono: var(--font-plex);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-space);
+}
+
+/* Linux-style Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.2) transparent;
+}
+
+::selection {
+  background: rgba(120, 216, 255, 0.2);
+}
+
+.galaxy-base {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(95, 135, 255, 0.04), transparent 40%),
+    radial-gradient(circle at 80% 10%, rgba(120, 216, 255, 0.03), transparent 45%),
+    linear-gradient(180deg, #05060d 0%, #05060d 100%);
+}
+
+.galaxy-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 25px 5px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 50px 25px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 125px 20px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 50px 75px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(2px 2px at 15px 125px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(2.5px 2.5px at 110px 80px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 220px 280px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 180px 150px, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 350px 350px;
+  opacity: 0.6;
+  animation: twinkle 5s ease-in-out infinite;
+}
+
+.galaxy-nebula {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.08;
+}
+
+.nebula-a {
+  left: 10%;
+  top: 10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(95, 135, 255, 0.4), transparent 70%);
+}
+
+.nebula-b {
+  display: none;
+}
+
+.nebula-c {
+  display: none;
+}
+
+.glass-panel {
+  background: rgba(10, 14, 28, 0.68);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 24px 60px -40px rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(18px);
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.motion-rise {
+  animation: riseIn 260ms var(--motion-ease) both;
+}
+
+.motion-rise-delay-1 {
+  animation-delay: 80ms;
+}
+
+.motion-rise-delay-2 {
+  animation-delay: 140ms;
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 200ms var(--motion-ease), box-shadow 200ms var(--motion-ease);
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tilt-card:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(24px, -18px, 0);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-rise,
+  .motion-rise-delay-1,
+  .motion-rise-delay-2 {
+    animation: none;
+  }
+
+  .tilt-card {
+    transition: none;
+    transform: none;
+  }
+
+  .galaxy-stars,
+  .galaxy-nebula {
+    animation: none;
+  }
+}
+
+/* Custom Image Cursor */
+body {
+  cursor: url("/cursor.svg"), auto;
+}
+
+a, button, input, [role="button"], .cursor-pointer {
+  cursor: url("/cursor-pointer.svg"), pointer;
+}
+
+/* Shimmer Underline Animation */
+.shimmer-line {
+  background: linear-gradient(90deg, transparent, rgba(80, 200, 255, 0.65), transparent);
+  transform: translateX(-120%);
+  animation: shimmer-move 2.6s ease-in-out infinite;
+  filter: blur(0.2px);
+}
+
+@keyframes shimmer-move {
+  0% { transform: translateX(-120%); opacity: 0; }
+  15% { opacity: 0.9; }
+  50% { transform: translateX(220%); opacity: 0.9; }
+  100% { transform: translateX(220%); opacity: 0; }
+}
+
+/* OS Sweep / Scan Light Animation */
+.os-sweep {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(80, 200, 255, 0.55),
+    rgba(160, 120, 255, 0.35),
+    transparent
+  );
+  filter: blur(10px);
+  transform: translateX(-60%);
+  animation: os-sweep-move 5.2s ease-in-out infinite;
+}
+
+@keyframes os-sweep-move {
+  0%   { transform: translateX(-65%) rotate(12deg); }
+  50%  { transform: translateX(65%) rotate(12deg); }
+  100% { transform: translateX(65%) rotate(12deg); }
+}
+
+/* Aurora Text Effect */
+.hero-aurora {
+  background: linear-gradient(
+    90deg,
+    rgba(148, 163, 184, 1),
+    rgba(95, 135, 255, 1),
+    rgba(167, 139, 250, 1),
+    rgba(148, 163, 184, 1)
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: aurora-move 4s linear infinite;
+}
+
+@keyframes aurora-move {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-line, .os-sweep, .hero-aurora {
+    animation: none;
+  }
+}
