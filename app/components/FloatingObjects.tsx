@@ -158,7 +158,7 @@ const items: FloatingItemData[] = [
   { id: "heart", initialX: 420, initialY: 320, icon: Heart, color: "text-red-500", secret: "LOVE_METER" },
 ];
 
-function FloatingItem({ item, containerRef, onActivate }: { item: FloatingItemData; containerRef: React.RefObject<HTMLDivElement>; onActivate: (secret: string) => void }) {
+function FloatingItem({ item, containerRef, onActivate }: { item: FloatingItemData; containerRef: React.RefObject<HTMLDivElement | null>; onActivate: (secret: string) => void }) {
   const controls = useAnimation();
   const reduceMotion = useReducedMotion();
   const [isDragging, setIsDragging] = useState(false);
