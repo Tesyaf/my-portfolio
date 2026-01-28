@@ -276,7 +276,7 @@ export default function ConsoleSection() {
             <div 
                 className="absolute inset-0 opacity-20 pointer-events-none"
                 style={{
-                    backgroundImage: "url(/wallpaper.jpg)",
+                    backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH || ''}/wallpaper.jpg)`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }} 

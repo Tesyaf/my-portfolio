@@ -189,11 +189,11 @@ body {
 
 /* Custom Image Cursor */
 body {
-  cursor: url("/cursor.svg"), auto;
+  cursor: url("/my-portfolio/cursor.svg"), auto;
 }
 
 a, button, input, [role="button"], .cursor-pointer {
-  cursor: url("/cursor-pointer.svg"), pointer;
+  cursor: url("/my-portfolio/cursor-pointer.svg"), pointer;
 }
 
 /* Shimmer Underline Animation */
