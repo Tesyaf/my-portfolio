@@ -119,6 +119,7 @@ body {
     opacity: 0;
     transform: translateY(16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -150,26 +151,31 @@ body {
 }
 
 @keyframes drift {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0);
   }
+
   50% {
     transform: translate3d(24px, -18px, 0);
   }
 }
 
 @keyframes twinkle {
+
   0%,
   100% {
     opacity: 0.45;
   }
+
   50% {
     opacity: 0.85;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .motion-rise,
   .motion-rise-delay-1,
   .motion-rise-delay-2 {
@@ -189,11 +195,15 @@ body {
 
 /* Custom Image Cursor */
 body {
-  cursor: url("/my-portfolio/cursor.svg"), auto;
+  cursor: url("/cursor.svg"), auto;
 }
 
-a, button, input, [role="button"], .cursor-pointer {
-  cursor: url("/my-portfolio/cursor-pointer.svg"), pointer;
+a,
+button,
+input,
+[role="button"],
+.cursor-pointer {
+  cursor: url("/cursor-pointer.svg"), pointer;
 }
 
 /* Shimmer Underline Animation */
@@ -205,41 +215,59 @@ a, button, input, [role="button"], .cursor-pointer {
 }
 
 @keyframes shimmer-move {
-  0% { transform: translateX(-120%); opacity: 0; }
-  15% { opacity: 0.9; }
-  50% { transform: translateX(220%); opacity: 0.9; }
-  100% { transform: translateX(220%); opacity: 0; }
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translateX(220%);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translateX(220%);
+    opacity: 0;
+  }
 }
 
 /* OS Sweep / Scan Light Animation */
 .os-sweep {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(80, 200, 255, 0.55),
-    rgba(160, 120, 255, 0.35),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(80, 200, 255, 0.55),
+      rgba(160, 120, 255, 0.35),
+      transparent);
   filter: blur(10px);
   transform: translateX(-60%);
   animation: os-sweep-move 5.2s ease-in-out infinite;
 }
 
 @keyframes os-sweep-move {
-  0%   { transform: translateX(-65%) rotate(12deg); }
-  50%  { transform: translateX(65%) rotate(12deg); }
-  100% { transform: translateX(65%) rotate(12deg); }
+  0% {
+    transform: translateX(-65%) rotate(12deg);
+  }
+
+  50% {
+    transform: translateX(65%) rotate(12deg);
+  }
+
+  100% {
+    transform: translateX(65%) rotate(12deg);
+  }
 }
 
 /* Aurora Text Effect */
 .hero-aurora {
-  background: linear-gradient(
-    90deg,
-    rgba(148, 163, 184, 1),
-    rgba(95, 135, 255, 1),
-    rgba(167, 139, 250, 1),
-    rgba(148, 163, 184, 1)
-  );
+  background: linear-gradient(90deg,
+      rgba(148, 163, 184, 1),
+      rgba(95, 135, 255, 1),
+      rgba(167, 139, 250, 1),
+      rgba(148, 163, 184, 1));
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;
@@ -253,8 +281,31 @@ a, button, input, [role="button"], .cursor-pointer {
   }
 }
 
+/* Shimmer animation for arcade cards */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  60% {
+    transform: translateX(220%);
+  }
+
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .shimmer-line, .os-sweep, .hero-aurora {
+
+  .shimmer-line,
+  .os-sweep,
+  .hero-aurora,
+  .animate-shimmer {
     animation: none;
   }
 }

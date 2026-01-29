@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import WindowManagerProvider from "./os/WindowManager";
 
 const space = Space_Grotesk({
   variable: "--font-space",
@@ -33,8 +34,11 @@ export default function RootLayout({
       <body
         className={`${space.variable} ${jetbrains.variable} ${plex.variable} antialiased bg-[#05060d] text-[#e6ecff]`}
       >
-        {children}
+        <WindowManagerProvider>
+          {children}
+        </WindowManagerProvider>
       </body>
     </html>
   );
 }
+

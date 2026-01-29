@@ -1,7 +1,11 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Github, Linkedin, Mail, Terminal } from "lucide-react";
+import {
+  ArrowUpRight, Github, Linkedin, Mail, Terminal,
+  Code2, FileCode, Database, Palette, Table, Network, Brain,
+  GitBranch, Container, Cloud, Monitor
+} from "lucide-react";
 import ConsoleSection from "./components/ConsoleSection";
 import FloatingObjects from "./components/FloatingObjects";
 import CursorGlow from "./components/CursorGlow";
@@ -93,7 +97,7 @@ function ProjectsGrid() {
                 {project.description}
               </p>
             </div>
-            
+
             <div className="mt-8">
               <div className="flex flex-wrap gap-2">
                 {project.stack.slice(0, 3).map((tech) => (
@@ -102,29 +106,61 @@ function ProjectsGrid() {
                   </span>
                 ))}
                 {project.stack.length > 3 && (
-                   <span className="text-xs text-slate-600">+{project.stack.length - 3}</span>
+                  <span className="text-xs text-slate-600">+{project.stack.length - 3}</span>
                 )}
               </div>
             </div>
           </div>
         ))}
       </div>
-      
+
       <div className="mt-12 flex justify-center">
-         <a href="#console" className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-slate-300 hover:bg-white/10 transition">
-            <Terminal className="w-4 h-4 text-slate-400" />
-            <span>Open Advanced Console</span>
-         </a>
+        <a href="#console" className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-slate-300 hover:bg-white/10 transition">
+          <Terminal className="w-4 h-4 text-slate-400" />
+          <span>Open Advanced Console</span>
+        </a>
       </div>
     </section>
   );
 }
 
 function SkillsSection() {
+  // Skills with their associated Lucide icon names
   const skills = {
-    Core: ["Laravel", "PHP", "PostgreSQL", "Tailwind CSS"],
-    Data: ["Python", "Pandas", "Clustering", "Fuzzy Logic"],
-    Tools: ["Git", "Docker", "Azure", "Linux"],
+    Core: [
+      { name: "Laravel", icon: "Code2" },
+      { name: "PHP", icon: "FileCode" },
+      { name: "PostgreSQL", icon: "Database" },
+      { name: "Tailwind CSS", icon: "Palette" },
+    ],
+    Data: [
+      { name: "Python", icon: "Terminal" },
+      { name: "Pandas", icon: "Table" },
+      { name: "Clustering", icon: "Network" },
+      { name: "Fuzzy Logic", icon: "Brain" },
+    ],
+    Tools: [
+      { name: "Git", icon: "GitBranch" },
+      { name: "Docker", icon: "Container" },
+      { name: "Azure", icon: "Cloud" },
+      { name: "Linux", icon: "Monitor" },
+    ],
+  };
+
+  // Icon mapping
+  const iconMap: Record<string, React.ReactNode> = {
+    Code2: <Code2 size={14} />,
+    FileCode: <FileCode size={14} />,
+    Database: <Database size={14} />,
+    Palette: <Palette size={14} />,
+    Terminal: <Terminal size={14} />,
+    Table: <Table size={14} />,
+    Network: <Network size={14} />,
+    Brain: <Brain size={14} />,
+    GitBranch: <GitBranch size={14} />,
+    Container: <Container size={14} />,
+    Cloud: <Cloud size={14} />,
+    Monitor: <Monitor size={14} />,
   };
 
   return (
@@ -142,10 +178,11 @@ function SkillsSection() {
               <div className="flex flex-wrap gap-2">
                 {items.map((item) => (
                   <span
-                    key={item}
-                    className="cursor-default rounded-full border border-white/5 bg-white/[0.02] px-4 py-1.5 text-sm text-slate-300 transition hover:border-emerald-500/30 hover:text-emerald-300"
+                    key={item.name}
+                    className="flex items-center gap-2 cursor-default rounded-full border border-white/5 bg-white/[0.02] px-4 py-1.5 text-sm text-slate-300 transition hover:border-emerald-500/30 hover:text-emerald-300"
                   >
-                    {item}
+                    <span className="text-slate-500">{iconMap[item.icon]}</span>
+                    {item.name}
                   </span>
                 ))}
               </div>
@@ -209,42 +246,42 @@ export default function Home() {
   };
 
   return (
-                <div className="relative min-h-screen bg-[#05060d] text-slate-100 selection:bg-emerald-500/30 overflow-x-hidden">
-                  {/* Background Layers */}
-                  <div className="pointer-events-none fixed inset-0 -z-10">
-                    <div className="galaxy-base" />
-                    <div className="galaxy-nebula nebula-a" />
-                    <div className="absolute -top-40 left-[-120px] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(120,90,255,0.15),transparent_60%)] blur-3xl opacity-60" />
-                    <div className="absolute top-[20%] right-[-160px] h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(80,200,255,0.12),transparent_60%)] blur-3xl opacity-50" />
-                    <div className="galaxy-stars" />
-                  </div>
-            
-                        <CursorGlow />
-                        
-                        {/* Floating Objects on Top for easy interaction */}
-                        <div className="absolute inset-0 z-40 pointer-events-none overflow-hidden">
-                          <FloatingObjects />
-                        </div>
-                  
-                        <header className="relative z-10 mx-auto flex w-full max-w-6xl flex-col px-6 pt-32 pb-24">                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={transition}
-                    >
-                      <div className="flex items-center gap-3">             <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-             </span>
-             <span className="text-xs font-medium uppercase tracking-widest text-emerald-500/80">Available for work</span>
-          </div>
-          
-          <LiquidHeroName />
+    <div className="relative min-h-screen bg-[#05060d] text-slate-100 selection:bg-emerald-500/30 overflow-x-hidden">
+      {/* Background Layers */}
+      <div className="pointer-events-none fixed inset-0 -z-10">
+        <div className="galaxy-base" />
+        <div className="galaxy-nebula nebula-a" />
+        <div className="absolute -top-40 left-[-120px] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(120,90,255,0.15),transparent_60%)] blur-3xl opacity-60" />
+        <div className="absolute top-[20%] right-[-160px] h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(80,200,255,0.12),transparent_60%)] blur-3xl opacity-50" />
+        <div className="galaxy-stars" />
+      </div>
 
-          <p className="mt-8 max-w-xl text-lg text-slate-400 leading-relaxed">
-            Exploring the intersection of Web Engineering and Data Science.
-            Building systems that are both robust and intelligent.
-          </p>
-        </motion.div>
+      <CursorGlow />
+
+      {/* Floating Objects on Top for easy interaction */}
+      <div className="absolute inset-0 z-40 pointer-events-none overflow-hidden">
+        <FloatingObjects />
+      </div>
+
+      <header className="relative z-10 mx-auto flex w-full max-w-6xl flex-col px-6 pt-32 pb-24">                    <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={transition}
+      >
+        <div className="flex items-center gap-3">             <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+          <span className="text-xs font-medium uppercase tracking-widest text-emerald-500/80">Available for work</span>
+        </div>
+
+        <LiquidHeroName />
+
+        <p className="mt-8 max-w-xl text-lg text-slate-400 leading-relaxed">
+          Exploring the intersection of Web Engineering and Data Science.
+          Building systems that are both robust and intelligent.
+        </p>
+      </motion.div>
       </header>
 
       <main className="relative z-10">
@@ -258,9 +295,9 @@ export default function Home() {
         <SectionDivider />
         <ContactSection />
       </main>
-      
+
       <footer className="pt-24 pb-12 text-center text-xs text-slate-600">
-         © {new Date().getFullYear()} Alif Abrar. Minimal Edition.
+        © {new Date().getFullYear()} Alif Abrar. Minimal Edition.
       </footer>
     </div>
   );
