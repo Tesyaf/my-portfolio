@@ -9,6 +9,7 @@ import ConsoleSection from "./components/ConsoleSection";
 import FloatingObjects from "./components/FloatingObjects";
 import CursorGlow from "./components/CursorGlow";
 import LiquidHeroName from "./components/LiquidHeroName";
+import ShootingStars from "./components/ShootingStars";
 import { projects } from "./data/projects";
 import { Stagger, FadeUp, FadeIn, ScaleIn } from "./components/motion";
 
@@ -262,6 +263,7 @@ export default function Home() {
         <div className="absolute -top-40 left-[-120px] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(120,90,255,0.15),transparent_60%)] blur-3xl opacity-60" />
         <div className="absolute top-[20%] right-[-160px] h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(80,200,255,0.12),transparent_60%)] blur-3xl opacity-50" />
         <div className="galaxy-stars" />
+        <ShootingStars />
       </div>
 
       <CursorGlow />

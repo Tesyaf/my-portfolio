@@ -300,12 +300,142 @@ input,
   animation: shimmer 2.2s ease-in-out infinite;
 }
 
+/* Shooting Stars - bidirectional */
+.sstar {
+  position: absolute;
+  width: 2px;
+  height: 220px;
+  opacity: 0;
+  border-radius: 999px;
+  --rot: 0deg;
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(200, 240, 255, 0.9),
+      rgba(80, 200, 255, 0.6),
+      rgba(255, 255, 255, 0));
+  filter: drop-shadow(0 0 8px rgba(80, 200, 255, 0.4)) drop-shadow(0 0 14px rgba(160, 120, 255, 0.2));
+  will-change: transform, opacity;
+}
+
+/* turun: dari atas -> bawah */
+.sstar.down {
+  top: -30%;
+  transform: rotate(var(--rot)) translateY(-30vh);
+  animation: star-down 7s ease-in-out infinite;
+}
+
+/* naik: dari bawah -> atas */
+.sstar.up {
+  bottom: -30%;
+  transform: rotate(var(--rot)) translateY(30vh);
+  animation: star-up 7.5s ease-in-out infinite;
+}
+
+/* animasi turun */
+@keyframes star-down {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--rot)) translateY(-35vh);
+  }
+
+  8% {
+    opacity: 0.95;
+  }
+
+  18% {
+    opacity: 0;
+    transform: rotate(var(--rot)) translateY(130vh);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(var(--rot)) translateY(130vh);
+  }
+}
+
+/* animasi naik */
+@keyframes star-up {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--rot)) translateY(35vh);
+  }
+
+  8% {
+    opacity: 0.95;
+  }
+
+  18% {
+    opacity: 0;
+    transform: rotate(var(--rot)) translateY(-130vh);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(var(--rot)) translateY(-130vh);
+  }
+}
+
+/* posisi & variasi - turun */
+.s1 {
+  left: 12%;
+  height: 240px;
+  --rot: 7deg;
+  animation-delay: 0s;
+  animation-duration: 5s;
+}
+
+.s2 {
+  left: 38%;
+  height: 200px;
+  --rot: -5deg;
+  animation-delay: 1.8s;
+  animation-duration: 6s;
+}
+
+.s3 {
+  left: 74%;
+  height: 280px;
+  --rot: 4deg;
+  animation-delay: 3.5s;
+  animation-duration: 7s;
+}
+
+/* posisi & variasi - naik */
+.s4 {
+  left: 20%;
+  height: 220px;
+  --rot: -6deg;
+  animation-delay: 1s;
+  animation-duration: 6.5s;
+}
+
+.s5 {
+  left: 56%;
+  height: 260px;
+  --rot: 5deg;
+  animation-delay: 2.8s;
+  animation-duration: 7.2s;
+}
+
+.s6 {
+  left: 86%;
+  height: 210px;
+  --rot: -3deg;
+  animation-delay: 4.5s;
+  animation-duration: 5.8s;
+}
+
 @media (prefers-reduced-motion: reduce) {
 
   .shimmer-line,
   .os-sweep,
   .hero-aurora,
-  .animate-shimmer {
+  .animate-shimmer,
+  .sstar {
     animation: none;
+  }
+
+  .sstar {
+    display: none;
   }
 }
